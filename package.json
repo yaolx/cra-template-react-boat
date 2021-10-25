@@ -1,6 +1,6 @@
 {
   "name": "cra-template-react-boat",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/yaolx/cra-template-react-boat.git"
@@ -14,7 +14,7 @@
   "license": "ISC",
   "engines": {
     "yarn": ">=1.22.10",
-    "node": ">=14.0.0"
+    "node": ">=12.22.0"
   },
   "scripts": {
     "dev": "vite",
