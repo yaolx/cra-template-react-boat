@@ -1,6 +1,17 @@
 ﻿# cra-template-react-boat
 
 基于vite构建的react + mobox + typescript 脚手架
+
+
+## create react app
+
+To use this template with Create React App, add --template react-boat when creating a new app.
+For example:
+
+    npx create-react-app my-app --template react-boat
+
+    yarn create react-app my-app --template react-boat
+
 ## 命令说明
 
 > yarn install

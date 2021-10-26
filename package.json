@@ -5,6 +5,7 @@
     "type": "git",
     "url": "https://github.com/yaolx/cra-template-react-boat.git"
   },
+  "keywords": ["react", "typescript", "vite", "mobx", "create-react-app"],
   "author": "yaolx",
   "main": "template.json",
   "files": [
