@@ -1,11 +1,13 @@
 // https://vitejs.dev/config/
-import { ConfigEnv } from 'vite'
 import fs from 'fs'
-import dotenv from 'dotenv'
 import path from 'path'
+
+import dotenv from 'dotenv'
+import { ConfigEnv } from 'vite'
+
+import { PORT } from './config/constant'
 import { createVitePlugins } from './config/vite/plugins'
 import { createProxy } from './config/vite/proxy'
-import { PORT } from './config/constant'
 import pkg from './package.json'
 /**
  * 环境初始化
@@ -57,7 +59,7 @@ export default ({ command, mode }: ConfigEnv) => {
       host: true,
       port: PORT,
       open: true,
-      proxy: createProxy(),
+      proxy: createProxy()
     }
   }
 }

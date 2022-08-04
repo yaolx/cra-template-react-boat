@@ -2,23 +2,20 @@
  * vite plugin
  */
 
-import { Plugin } from 'vite'
-import viteCompression from 'vite-plugin-compression'
-import legacy from '@vitejs/plugin-legacy'
-import reactRefresh from '@vitejs/plugin-react-refresh'
 import eslint from '@rollup/plugin-eslint'
 import typescript from '@rollup/plugin-typescript'
+import legacy from '@vitejs/plugin-legacy'
+import reactRefresh from '@vitejs/plugin-react'
+import viteCompression from 'vite-plugin-compression'
 
-import {
-  VITE_APP_ANALYZE,
-  VITE_APP_COMPRESS_GZIP
-} from '../../constant'
 import configMockPlugin from './mock'
-import configVisualizerPlugin from './visualizer'
 import configStyleImportPlugin from './styleImport'
+import configVisualizerPlugin from './visualizer'
+
+import { VITE_APP_ANALYZE, VITE_APP_COMPRESS_GZIP } from '../../constant'
 
 export function createVitePlugins(viteEnv: string, isBuild: boolean) {
-  const vitePlugins: (Plugin | Plugin[])[] = [
+  const vitePlugins = [
     {
       ...eslint({
         include: 'src/**/*.+(js|jsx)'
@@ -39,9 +36,7 @@ export function createVitePlugins(viteEnv: string, isBuild: boolean) {
 
   // 发布，打包
   if (VITE_APP_COMPRESS_GZIP && isBuild) {
-    vitePlugins.push(
-      viteCompression({ deleteOriginFile: true })
-    )
+    vitePlugins.push(viteCompression({ deleteOriginFile: true }))
   }
 
   return vitePlugins
