@@ -1,11 +1,16 @@
-import React from 'react'
+import { lazy } from 'react'
 import { useRoutes, RouteObject } from 'react-router-dom'
 
-import Home from '@/page/home'
+const Home = lazy(() => import('@/page/home'))
+const Student = lazy(() => import('@/page/student'))
 const routesConfig: RouteObject[] = [
   {
     path: '/',
     element: <Home />
+  },
+  {
+    path: '/student',
+    element: <Student />
   }
 ]
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import { StrictMode, Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter } from 'react-router-dom'
 
@@ -12,12 +12,14 @@ const stores = {
   globalStore
 }
 ReactDOM.render(
-  <React.StrictMode>
+  <StrictMode>
     <Provider stores={stores}>
       <HashRouter>
-        <Router />
+        <Suspense>
+          <Router />
+        </Suspense>
       </HashRouter>
     </Provider>
-  </React.StrictMode>,
+  </StrictMode>,
   document.getElementById('root')
 )
