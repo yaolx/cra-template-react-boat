@@ -1,17 +1,19 @@
-import axios from 'axios'
 import { message } from 'antd'
+import axios, { AxiosInstance } from 'axios'
 
 const pendingMap = new Map()
 
 let loadingCount = 0
 
-function request(axiosConfig, customOptions) {
-  const config = import.meta.env 
-  const service = axios.create({
-    baseURL: (config.VITE_SERVER as string), // 设置统一的请求前缀
+const customOptions = {
+  loading: true
+}
+const config = import.meta.env
+function initInstance() {
+  const instance: AxiosInstance = axios.create({
+    baseURL: config.VITE_SERVER as string, // 设置统一的请求前缀
     timeout: 10000 // 设置统一的超时时长
   })
-
   // 自定义配置
   const options = Object.assign(
     {
@@ -25,7 +27,7 @@ function request(axiosConfig, customOptions) {
   )
 
   // 请求拦截
-  service.interceptors.request.use(
+  instance.interceptors.request.use(
     (config) => {
       removePending(config)
       options.repeatRequestCancel && addPending(config)
@@ -49,7 +51,7 @@ function request(axiosConfig, customOptions) {
   )
 
   // 响应拦截
-  service.interceptors.response.use(
+  instance.interceptors.response.use(
     (response: any) => {
       removePending(response.config)
       options.loading && closeLoading(options) // 关闭loading
@@ -67,11 +69,10 @@ function request(axiosConfig, customOptions) {
       return Promise.reject(error) // 错误继续返回给到具体页面
     }
   )
-
-  return service(axiosConfig)
+  return instance
 }
-
-export default request
+const instance = initInstance()
+export default instance
 
 /**
  * 处理异常

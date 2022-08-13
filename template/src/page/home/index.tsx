@@ -1,27 +1,26 @@
-import React from 'react'
-import { observer } from 'mobx-react'
+import { useNavigate } from 'react-router-dom'
+
 import { Button } from 'antd'
+import { observer } from 'mobx-react'
+
+import useModal from '@/components/modal'
 import { useStores } from '@/hooks'
-import request from '@/config/request'
+import Student from '@/page/student'
+
+import logo from './logo.svg'
 import homeStore from './model'
 import styles from './style/index.module.less'
-import logo from './logo.svg'
+const config = import.meta.env
 function Home(): JSX.Element {
   const globalStore = useStores('globalStore')
-  const onHandler = () => {
-    request(
-      {
-        url: '/api/user',
-        method: 'get'
-      },
-      {
-        loading: true
-      }
-    ).then((data) => {
-      console.log('EEEE', data)
-    })
+  const { modalRef, FormModal } = useModal({}, Student)
+  const navigate = useNavigate()
+  const gotoPage = () => {
+    navigate('student')
   }
-  const config = import.meta.env
+  const gotoModal = () => {
+    modalRef.current?.open()
+  }
   return (
     <div className={styles.App}>
       <header className={styles['App-header']}>
@@ -33,8 +32,11 @@ function Home(): JSX.Element {
           </Button>
         </p>
         <div>
-          <Button type="primary" onClick={onHandler}>
-            请求数据
+          <Button type="primary" onClick={gotoPage} style={{ marginRight: 20 }}>
+            学生页面路由跳转
+          </Button>
+          <Button type="primary" onClick={gotoModal}>
+            学生页面打开弹框
           </Button>
         </div>
         <div>
@@ -44,7 +46,7 @@ function Home(): JSX.Element {
           <Button type="primary" onClick={globalStore.fail}>
             注销
           </Button>
-          <div>{globalStore.isLogin ? '3已登录' : '2未登录'}</div>
+          登录状态：{globalStore.isLogin ? 1 : 0}
         </div>
         <p>
           <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
@@ -55,6 +57,7 @@ function Home(): JSX.Element {
             Vite Docs
           </a>
         </p>
+        <FormModal />
       </header>
     </div>
   )
