@@ -1,4 +1,5 @@
 node_modules
 dist
-.eslintcache
+coverage
 /yarn.lock
+/test/__snapshots__

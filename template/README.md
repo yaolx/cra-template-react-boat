@@ -25,6 +25,11 @@ json-server做mock请求，接口定义符合RESTful API 规范
 
 concurrently同时启动前端、后端2个服务
 
+
+## vitest单元测试框架
+
+[官方地址](https://cn.vitest.dev/)
+
 ## 命令介绍
 
 1. yarn mock

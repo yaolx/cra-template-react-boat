@@ -1,4 +1,5 @@
-// https://vitejs.dev/config/
+/// <reference types="vitest" />
+
 import fs from 'fs'
 import path from 'path'
 
@@ -30,6 +31,7 @@ export default ({ command, mode }: ConfigEnv) => {
   const isBuild = command === 'build'
   envInit(mode)
   return {
+    test: {},
     plugins: createVitePlugins(mode, isBuild),
     resolve: {
       alias: {
