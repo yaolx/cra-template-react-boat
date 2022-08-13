@@ -12,42 +12,47 @@ For example:
 
     yarn create react-app my-app --template react-boat
 
-## 命令说明
+# react-boat
 
-> yarn install
+从零开始搭 vite + reactjs 项目，，并通过 Actions 自动构建，发布
 
-    安装依赖
+vite + reactjs + typescript + mobx + eslint + json-server
 
-> yarn run start:mock
 
-    本地运行mock环境
+## 全新vite3.0体验
 
->  yarn run start:test
+## react-router 6.0
 
-    本地运行测试环境
+useRouters构造路由
 
-> yarn run start:production
+## React.Suspense + React.lazy做异步加载
 
-    本地运行生产环境
+通过import做异步加载
 
->  yarn run build:test
+`const Home = lazy(() => import('@/page/home'))`
 
-    本地打包测试环境
+## json-server
 
->  yarn run build:production
+json-server做mock请求，接口定义符合RESTful API 规范
 
-    本地生产生产环境
+## concurrently
 
-> yarn run serve
+concurrently同时启动前端、后端2个服务
 
-    本地开启服务，运行dist目录代码
+## 命令介绍
 
-> yarn run lint
+1. yarn mock
 
-    eslint检测代码
+本地开发，启动mock请求
 
-## 用vite支持esm构建，效率更高
+2. yarn build
 
-    Vite 是基于 esbuild 预构建依赖的
-    
-## typescript，类型检测
+构建生产环境
+
+3. yarn server
+
+构建后，用dist目录的静态资源启动服务，并开启mock
+
+4. yarn json-server
+
+开启json-server，模拟数据接口
