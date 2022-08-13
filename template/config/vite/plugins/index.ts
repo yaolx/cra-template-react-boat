@@ -7,8 +7,9 @@ import typescript from '@rollup/plugin-typescript'
 import legacy from '@vitejs/plugin-legacy'
 import reactRefresh from '@vitejs/plugin-react'
 import viteCompression from 'vite-plugin-compression'
+import OptimizationPersist from 'vite-plugin-optimize-persist'
+import PkgConfig from 'vite-plugin-package-config'
 
-import configMockPlugin from './mock'
 import configStyleImportPlugin from './styleImport'
 import configVisualizerPlugin from './visualizer'
 
@@ -25,11 +26,11 @@ export function createVitePlugins(viteEnv: string, isBuild: boolean) {
     typescript(),
     reactRefresh(),
     legacy(),
-    configStyleImportPlugin()
+    configStyleImportPlugin(),
+    // 优化首次启动，提高页面访问速度
+    PkgConfig(),
+    OptimizationPersist()
   ]
-
-  // mock下开启
-  viteEnv === 'mock' && vitePlugins.push(configMockPlugin(isBuild))
 
   // 包分析
   VITE_APP_ANALYZE && vitePlugins.push(configVisualizerPlugin())

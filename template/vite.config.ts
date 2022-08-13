@@ -8,7 +8,6 @@ import { ConfigEnv } from 'vite'
 import { PORT } from './config/constant'
 import { createVitePlugins } from './config/vite/plugins'
 import { createProxy } from './config/vite/proxy'
-import pkg from './package.json'
 /**
  * 环境初始化
  * @param mode
@@ -31,7 +30,6 @@ export default ({ command, mode }: ConfigEnv) => {
   const isBuild = command === 'build'
   envInit(mode)
   return {
-    base: `/${pkg.name}/`,
     plugins: createVitePlugins(mode, isBuild),
     resolve: {
       alias: {

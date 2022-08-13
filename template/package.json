@@ -9,13 +9,15 @@
   },
   "scripts": {
     "dev": "vite",
-    "serve": "vite preview",
+    "serve": "concurrently \"yarn json-server\"  \"yarn vite preview\"",
+    "mock": "concurrently \"yarn json-server\"  \"yarn start:mock\"",
     "start:mock": "vite -m mock",
     "start:test": "vite -m test",
     "start:production": "vite -m production",
     "build": "tsc && vite build",
     "build:test": "tsc && vite build -m test",
     "build:production": "tsc && vite build -m production",
+    "json-server": "json-server json_server_mock/db.json --watch --port 3001",
     "lint": "eslint src/"
   },
   "husky": {
@@ -34,6 +36,7 @@
     ]
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@loadable/component": "^5.15.0",
     "antd": "^4.16.13",
     "axios": "^0.23.0",
@@ -41,7 +44,6 @@
     "lodash": "^4.17.21",
     "mobx": "^6.3.5",
     "mobx-react": "^7.2.0",
-    "mockjs": "^1.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.2.2"
@@ -54,23 +56,27 @@
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
-    "@vitejs/plugin-legacy": "^2.0.0",
-    "@vitejs/plugin-react": "^2.0.0",
+    "@vitejs/plugin-legacy": "^2.0.1",
+    "@vitejs/plugin-react": "^2.0.1",
+    "concurrently": "^7.3.0",
     "dotenv": "^10.0.0",
     "eslint": "^7.0.1",
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-react": "^7.26.1",
     "husky": "4.3.8",
+    "json-server": "^0.17.0",
     "less": "^4.1.2",
     "lint-staged": "^11.2.3",
     "prettier": "^2.4.1",
     "rollup": "^2.77.2",
     "rollup-plugin-visualizer": "^5.5.2",
+    "terser": "^5.14.2",
     "typescript": "^4.3.2",
-    "vite": "^3.0.0",
+    "vite": "^3.0.7",
     "vite-plugin-compression": "^0.3.5",
-    "vite-plugin-mock": "^2.9.6",
+    "vite-plugin-optimize-persist": "^0.1.2",
+    "vite-plugin-package-config": "^0.1.1",
     "vite-plugin-style-import": "^1.2.1"
   }
 }
